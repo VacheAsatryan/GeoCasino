@@ -24,7 +24,7 @@ export const StyledButton = styled.button<{ $geo: Geo }>`
   border: none;
   cursor: pointer;
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: 490;
   color: #fff;
 
   &:hover {

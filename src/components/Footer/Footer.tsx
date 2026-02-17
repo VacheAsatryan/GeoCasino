@@ -17,6 +17,15 @@ import GeoDropdown from '../GeoDropdown/GeoDropdown';
 import { useGeo } from '../../app/providers/GeoProvider';
 import { translations } from '../../translations/translations';
 
+const SOCIAL_LINKS = {
+    instagram: 'https://instagram.com',
+    telegram: 'https://t.me',
+    twitter: 'https://x.com',
+    mail: 'mailto:support@geocasino.com',
+};
+
+const APP_DOWNLOAD_URL = 'https://geocasino.app/download';
+
 const Footer: React.FC = () => {
     const { geo } = useGeo();
     const t = translations[geo];
@@ -36,6 +45,9 @@ const Footer: React.FC = () => {
                             display: 'flex',
                             flexDirection: 'column',
                             alignItems: 'center',
+                            [`@media (max-width: ${breakpoints.mobile480}px)`]: {
+                                width: "fit-content"
+                            },
                         }}>
                         <Typography
                             sx={{
@@ -65,7 +77,9 @@ const Footer: React.FC = () => {
                             {t.footerDownloadSubtitle}
                         </Typography>
                         <Box sx={{ width: "250px" }}>
-                            <Button> <img src={Download} alt="download" /> {t.footerInstallButton}</Button>
+                            <Button onClick={() => window.open(APP_DOWNLOAD_URL, '_blank', 'noopener,noreferrer')}>
+                                <img src={Download} alt="download" /> {t.footerInstallButton}
+                            </Button>
                         </Box>
                     </Box>
                 </FooterBox>
@@ -127,7 +141,7 @@ const Footer: React.FC = () => {
                                 <Typography
                                     sx={{
                                         fontFamily: 'SF Pro, sans-serif',
-                                        fontWeight: 590,
+                                        fontWeight: 400,
                                         fontStyle: 'normal',
                                         fontSize: '16px',
                                         lineHeight: '40px',
@@ -152,7 +166,7 @@ const Footer: React.FC = () => {
                                 <Typography
                                     sx={{
                                         fontFamily: 'SF Pro, sans-serif',
-                                        fontWeight: 590,
+                                        fontWeight: 400,
                                         maxWidth: "287px",
                                         fontStyle: 'normal',
                                         fontSize: '16px',
@@ -196,18 +210,38 @@ const Footer: React.FC = () => {
 
                                     },
                                 }}>
-                                    <Typography>
+                                    <Typography
+                                        sx={{
+                                            fontFamily: 'SF Pro, sans-serif',
+                                            fontWeight: 400,
+                                            maxWidth: "287px",
+                                            fontStyle: 'normal',
+                                            fontSize: '16px',
+                                            lineHeight: '22px',
+                                            letterSpacing: 0,
+                                            color: "#BABABA",
+                                            textAlign: 'start',
+                                        }}>
                                         Us on social media:
                                     </Typography>
-                                    <Box sx={{
-                                        display: "flex",
-                                        gap: "2px",
-
-                                    }}>
-                                        <img src={Instagram} alt="Instagram" />
-                                        <img src={Telegram} alt="Instagram" />
-                                        <img src={Twitter} alt="Instagram" />
-                                        <img src={Mail} alt="Instagram" />
+                                    <Box
+                                        sx={{
+                                            display: "flex",
+                                            gap: "2px",
+                                        }}
+                                    >
+                                        <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer">
+                                            <img src={Instagram} alt="Instagram" />
+                                        </a>
+                                        <a href={SOCIAL_LINKS.telegram} target="_blank" rel="noopener noreferrer">
+                                            <img src={Telegram} alt="Telegram" />
+                                        </a>
+                                        <a href={SOCIAL_LINKS.twitter} target="_blank" rel="noopener noreferrer">
+                                            <img src={Twitter} alt="Twitter / X" />
+                                        </a>
+                                        <a href={SOCIAL_LINKS.mail} target="_blank" rel="noopener noreferrer">
+                                            <img src={Mail} alt="Email" />
+                                        </a>
                                     </Box>
                                 </Box>
                             </Box>
